@@ -10,13 +10,6 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60; // Increased to 5 minutes 
 
-// Configure body parser
-export const config = {
-  api: {
-    bodyParser: false,
-    responseLimit: false,
-  },
-};
 
 const uploadDir = path.join(process.cwd(), "tmp", "uploads");
 
