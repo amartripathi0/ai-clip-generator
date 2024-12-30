@@ -260,11 +260,11 @@ const Home = () => {
       </div>
 
       {file && (
-        <div className="mt-10 flex gap-4 h-full">
+        <div className="mt-10 flex items-start gap-4 h-full">
           <video
             controls
             src={URL.createObjectURL(file)}
-            className="w-full max-w-xl rounded-md shadow-lg"
+            className="w-full max-w-xl rounded-md shadow-lg aspect-video"
           />
 
           <div className="bg-neutral-900 w-full h-full flex p-6 rounded-lg shadow-md">

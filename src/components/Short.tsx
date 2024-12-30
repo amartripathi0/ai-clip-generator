@@ -17,7 +17,7 @@ const Short = React.forwardRef<FFmpeg, ShortProps>(
     const [vttUrl, setVttUrl] = useState("");
     const ffmpeg = ref as React.MutableRefObject<FFmpeg | null>;
     console.log(content);
-    
+
     useEffect(() => {
       async function processVideo() {
         if (ffmpeg?.current == null) return;
@@ -41,30 +41,30 @@ const Short = React.forwardRef<FFmpeg, ShortProps>(
       const duration = endSeconds - startSeconds;
 
       // Split content into words
-      const words = content.split(' ');
+      const words = content.split(" ");
       const wordsPerSegment = Math.ceil(words.length / (duration / 2)); // Show new caption every 2 seconds
 
       // Create VTT content
-      let vttContent = 'WEBVTT\n\n';
-      
+      let vttContent = "WEBVTT\n\n";
+
       for (let i = 0; i < words.length; i += wordsPerSegment) {
         const segmentWords = words.slice(i, i + wordsPerSegment);
-        const startTime = i / wordsPerSegment * 2;
+        const startTime = (i / wordsPerSegment) * 2;
         const endTime = Math.min((i / wordsPerSegment + 1) * 2, duration);
-        
+
         const formatTime = (seconds: number) => {
-          const pad = (num: number) => num.toString().padStart(2, '0');
+          const pad = (num: number) => num.toString().padStart(2, "0");
           const mins = Math.floor(seconds / 60);
           const secs = Math.floor(seconds % 60);
           const ms = Math.floor((seconds % 1) * 1000);
-          return `${pad(mins)}:${pad(secs)}.${ms.toString().padStart(3, '0')}`;
+          return `${pad(mins)}:${pad(secs)}.${ms.toString().padStart(3, "0")}`;
         };
 
         vttContent += `${formatTime(startTime)} --> ${formatTime(endTime)}\n`;
-        vttContent += `${segmentWords.join(' ')}\n\n`;
+        vttContent += `${segmentWords.join(" ")}\n\n`;
       }
 
-      const vttBlob = new Blob([vttContent], { type: 'text/vtt' });
+      const vttBlob = new Blob([vttContent], { type: "text/vtt" });
       const vttUrl = URL.createObjectURL(vttBlob);
       setVttUrl(vttUrl);
 
@@ -73,17 +73,8 @@ const Short = React.forwardRef<FFmpeg, ShortProps>(
 
     return (
       <div className="relative">
-        <video
-          controls
-          src={vid}
-          className="h-48 aspect-video rounded-lg"
-        >
-          <track 
-            default
-            kind="subtitles"
-            srcLang="en"
-            src={vttUrl}
-          />
+        <video controls src={vid} className="h-48 aspect-video rounded-lg">
+          <track default kind="subtitles" srcLang="en" src={vttUrl} />
         </video>
       </div>
     );
