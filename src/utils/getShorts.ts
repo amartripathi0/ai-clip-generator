@@ -1,3 +1,0 @@
-function getShorts({transcript}){
-    
-}
