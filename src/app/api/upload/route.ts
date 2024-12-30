@@ -8,7 +8,7 @@ import { getTranscript } from "@/utils/getTranscript";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60; // Increased to 5 minutes
+export const maxDuration = 60; // Increased to 5 minutes 
 
 // Configure body parser
 export const config = {
