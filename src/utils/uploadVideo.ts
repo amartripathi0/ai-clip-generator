@@ -15,7 +15,7 @@ export async function videoUpload(path: string, videoData: { mimetype: string; n
     let file = await fileManager.getFile(name);
     while (file.state === FileState.PROCESSING) {
       process.stdout.write(".");
-      await new Promise((res) => setTimeout(res, 10000)); // check every 10 seconds
+      await new Promise((res) => setTimeout(res, 10000));
       file = await fileManager.getFile(name);
     }
     if (file.state === FileState.FAILED) {
