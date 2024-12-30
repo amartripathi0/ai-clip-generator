@@ -5,12 +5,9 @@ import { NextRequest } from "next/server";
 import { videoUpload } from "@/utils/uploadVideo";
 import { getTranscript } from "@/utils/getTranscript";
 
-export const config = {
-  api: {
-    bodyParser: false,
-    responseLimit: false,
-  },
-};
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const maxDuration = 300;
 
 const uploadDir = path.join(process.cwd(), "public", "uploads");
 
