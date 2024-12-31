@@ -19,6 +19,8 @@ export default function Shorts({
 }) {
   const ffmpegRef = useRef<FFmpeg | null>(null);
   const [ffmpegLoad, setFfmpegLoad] = useState(false);
+//   console.log(transcript);
+  
   async function loadFFmpeg() {
     try {
       const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
@@ -58,7 +60,7 @@ export default function Shorts({
   return (
     <div className="flex flex-wrap gap-6 justify-center items-center p-4 bg-neutral-900">
       {transcript
-        .filter((clip) => Number(clip.viralPotential) >= 0.5)
+        ?.filter((clip) => Number(clip.viralPotential) >= 0.7)
         .map((clip, index) => (
           <div key={clip.startTime}>
             {ffmpegLoad && (
