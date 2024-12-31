@@ -12,6 +12,16 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        caption: "fadeInOut 3s ease-out forwards",
+      },
+      keyframes: {
+        fadeInOut: {
+          "0%": { opacity: "0", transform: "scale(0.8)" },
+          "50%": { opacity: "100", transform: "scale(1)" },
+          "100%": { opacity: "0", transform: "scale(0.8)" },
+        },
+      },
     },
   },
   plugins: [],

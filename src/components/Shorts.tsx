@@ -11,10 +11,10 @@ export default function Shorts({
 }: {
   video: File;
   transcript: {
-    start: string;
-    end: string;
+    startTime: string;
+    endTime: string;
     content: string;
-    viralPotential: string;
+    viralPotential: number;
   }[];
 }) {
   const ffmpegRef = useRef<FFmpeg | null>(null);
@@ -51,22 +51,21 @@ export default function Shorts({
     const totalSeconds = minutes * 60 + seconds;
     return totalSeconds.toString();
   }
-  console.log(transcript.filter((clip) => Number(clip.viralPotential) >= 0.5));
-  
+
   useEffect(() => {
     loadFFmpeg();
   }, []);
   return (
-    <div className="flex flex-wrap gap-4 justify-center items-center p-4 bg-neutral-900">
+    <div className="flex flex-wrap gap-6 justify-center items-center p-4 bg-neutral-900">
       {transcript
         .filter((clip) => Number(clip.viralPotential) >= 0.5)
         .map((clip, index) => (
-          <div key={clip.start}>
+          <div key={clip.startTime}>
             {ffmpegLoad && (
               <Short
                 videoIndex={index + 1}
-                start={formatTimestamp(clip.start)}
-                end={formatTimestamp(clip.end)}
+                start={formatTimestamp(clip.startTime)}
+                end={formatTimestamp(clip.endTime)}
                 video={video}
                 ref={ffmpegRef}
                 content={clip.content}

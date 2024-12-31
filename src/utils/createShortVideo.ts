@@ -8,7 +8,7 @@ export const createShortVideo = async (
   videoIndex: number,
   ffmpeg: FFmpeg
 ): Promise<string> => {
-  // console.log(startTime, endTime);
+  console.log(video);
   try {
     if (!video) return "";
     // Convert video to ArrayBuffer
@@ -30,8 +30,8 @@ export const createShortVideo = async (
       `${(video as File).name}-${videoIndex}.mp4`,
     ]);
 
-    const dir = await ffmpeg.listDir("/");
-    console.log(dir);
+    // const dir = await ffmpeg.listDir("/");
+    // console.log(dir);
     // Read the processed file
     const data = await ffmpeg.readFile(
       `${(video as File).name}-${videoIndex}.mp4`
