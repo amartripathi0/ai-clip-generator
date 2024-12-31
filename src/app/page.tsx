@@ -101,7 +101,7 @@ const Home = () => {
 
           <div className="bg-neutral-900 w-full h-full flex p-6 rounded-lg shadow-md">
             {isUploading ? (
-              "Creating short clips, it might take 1-2 minutes..."
+              "Creating short clips, it may take 1-2 minutes..."
             ) : (
               <Shorts video={file ?? undefined} transcript={transcript} />
             )}

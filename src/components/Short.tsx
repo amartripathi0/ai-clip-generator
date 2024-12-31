@@ -61,7 +61,7 @@ const Short = React.forwardRef<FFmpeg, ShortProps>(
         {loading ? (
           <p className="text-neutral-400">Fetching captions...</p>
         ) : (
-          <video controls src={vid} className="h-52 aspect-video rounded-lg">
+          <video controls src={vid} className="w-60 aspect-[9/16] object-cover rounded-lg">
             {vttUrl && (
               <track
                 className="text-3xl font-extrabold text-pink-500 animate-bounce"
