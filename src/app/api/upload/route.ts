@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { videoUpload } from "@/utils/uploadVideo";
 import { getTranscript } from "@/utils/getTranscript";
-import { getVtt } from "@/actions/getVtt";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -60,9 +59,6 @@ export async function POST(req: NextRequest) {
 
     const transcripts = await getTranscript(fileUploadResponse);
     // console.log(transcripts);
-
-    // const vttData = await getVtt(fileUploadResponse);
-    // console.log(vttData);
 
     // Clean up the temporary file
     fs.unlinkSync(uploadPath);
