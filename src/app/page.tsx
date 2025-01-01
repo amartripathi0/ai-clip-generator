@@ -1,4 +1,5 @@
 "use client";
+import { uploadVideo } from "@/actions/uploadVideo";
 import Shorts from "@/components/Shorts";
 import { useState } from "react";
 
@@ -31,35 +32,16 @@ const Home = () => {
     formData.append("file", file);
 
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (res.ok) {
+      const res = await uploadVideo(formData);
+      if (res.status === 201 && res.message) {
         setIsUploading(false);
-        const data = await res.json();
-        const message = data.Message;
-        setTranscript(JSON.parse(message));
-        // const jsonPart = message.match(/```json\n([\s\S]*)\n```/);
-        // if (jsonPart && jsonPart[1]) {
-        //   try {
-        //     const array = JSON.parse(jsonPart[1]);
-        //     setTranscript(array);
-        //   } catch (e) {
-        //     console.error("Error parsing JSON:", e);
-        //     setTranscript([]); // Reset transcript on error
-        //   }
-        // } else {
-        //   console.error("No JSON part found in the message.");
-        //   setTranscript([]); // Reset transcript if no JSON part
-        // }
+        setTranscript(JSON.parse(res.message));
       } else {
         setIsUploading(false);
-        const data = await res.json();
-        console.error(`Error: ${data.error}`);
+        console.error(`Error: ${res.error || 'Unknown error'}`);
       }
     } catch (error) {
+      setIsUploading(false);
       console.error(
         `Error: ${error instanceof Error ? error.message : "Unknown error"}`
       );
