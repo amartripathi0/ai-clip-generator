@@ -25,7 +25,7 @@ export async function getTranscript(file: FileMetadataResponse) {
         Subtitle Structure:
         startTime: The starting timestamp of the subtitle in mm:ss format.
         endTime: The ending timestamp of the subtitle in mm:ss format.
-        content: The dialogue or narration written in Hinglish (a natural blend of Hindi and English, transliterated accurately).
+        content: The dialogue or narration written in Hinglish (a natural blend of Hindi and English, transliterated accurately), don't translate anything just get the words as it is.
         viralPotential: A numeric probability value between 0 and 1, reflecting the likelihood of the section going viral on the internet.
         Language and Accuracy:
         Transcribe the dialogue or narration accurately from the video as it is.
